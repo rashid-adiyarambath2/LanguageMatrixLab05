@@ -1,7 +1,4 @@
 name: "CodeQL"
-
- 
-
 on:
   push:
     branches: [ "main" ]
@@ -9,45 +6,27 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '0 0 * * 0' # Weekly scan
-
- 
-
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
-
- 
-
     strategy:
       fail-fast: false
       matrix:
         # Add the languages you want CodeQL to scan
         language: [ 'javascript', 'python', 'cpp', 'java', 'csharp', 'go' ]
         # Supported values: 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift'
-
- 
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
- 
-
       # Initializes the CodeQL tools for the selected language
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-
- 
-
       # Autobuild for compiled languages
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
-
- 
-
       # Perform the CodeQL Analysis
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
