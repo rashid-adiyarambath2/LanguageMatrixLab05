@@ -8,8 +8,12 @@ on:
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze(${{ matrix.language }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript', 'python', 'java' ]
 
     permissions:
       security-events: write
@@ -23,7 +27,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: javascript
+          languages: ${{ matrix. Language }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
