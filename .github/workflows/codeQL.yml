@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     
     strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript', 'python', 'java' ]
+      fail-fast: false
+      matrix:
+        language: [ 'javascript', 'python', 'java' ]
         
     permissions:
       security-events: write
